@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Générateur de mot de passe</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="card">
+    <h1>Générateur de mot de passe</h1>
+
+    <div class="output">
+      <input type="text" id="password" readonly aria-label="Mot de passe généré">
+      <button id="copy" type="button" title="Copier">Copier</button>
+    </div>
+
+    <div class="strength">
+      <div class="bar"><span id="strength-bar"></span></div>
+      <span id="strength-label"></span>
+    </div>
+
+    <div class="field">
+      <label for="length">Longueur : <strong id="length-value">16</strong></label>
+      <input type="range" id="length" min="4" max="64" value="16">
+    </div>
+
+    <div class="options">
+      <label><input type="checkbox" id="upper" checked> Majuscules (A-Z)</label>
+      <label><input type="checkbox" id="lower" checked> Minuscules (a-z)</label>
+      <label><input type="checkbox" id="digits" checked> Chiffres (0-9)</label>
+      <label><input type="checkbox" id="symbols" checked> Symboles (!@#$…)</label>
+      <label><input type="checkbox" id="ambiguous"> Exclure les caractères ambigus (O, 0, l, 1, I)</label>
+    </div>
+
+    <p id="error" class="error" role="alert"></p>
+
+    <button id="generate" type="button" class="primary">Générer</button>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
