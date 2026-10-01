@@ -40,12 +40,18 @@ function getSelectedSets() {
     .map((key) => (excludeAmbiguous ? CHARSETS[key].replace(AMBIGUOUS, "") : CHARSETS[key]));
 }
 
-function generatePassword(length, sets) {
+function generatePassword(length, sets, noRepeat = false) {
   const all = sets.join("");
   // Garantit au moins un caractère de chaque catégorie choisie
   const chars = sets.map((set) => set[randomInt(set.length)]);
+  // Sans répétition : on tire uniquement parmi les caractères pas encore utilisés
+  const pool = noRepeat ? [...all].filter((c) => !chars.includes(c)) : null;
   while (chars.length < length) {
-    chars.push(all[randomInt(all.length)]);
+    if (noRepeat) {
+      chars.push(pool.splice(randomInt(pool.length), 1)[0]);
+    } else {
+      chars.push(all[randomInt(all.length)]);
+    }
   }
   return shuffle(chars).join("");
 }
@@ -75,9 +81,18 @@ function generate() {
     strengthLabel.textContent = "";
     return;
   }
+  const noRepeat = el("no-repeat").checked;
+  const poolSize = sets.join("").length;
+  if (noRepeat && length > poolSize) {
+    errorBox.textContent = `Sans répétition, la longueur maximale est de ${poolSize} caractères.`;
+    passwordInput.value = "";
+    strengthBar.style.width = "0";
+    strengthLabel.textContent = "";
+    return;
+  }
   errorBox.textContent = "";
 
-  passwordInput.value = generatePassword(length, sets);
+  passwordInput.value = generatePassword(length, sets, noRepeat);
   updateStrength(length, sets.join("").length);
 }
 
