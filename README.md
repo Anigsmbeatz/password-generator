@@ -24,3 +24,7 @@ Application web permettant de générer des mots de passe aléatoires.
 - Gestion des événements
 - Génération aléatoire en JavaScript
 - Utilisation de Git et GitHub
+
+## Capture d’écran
+
+![Aperçu du générateur de mots de passe](images/screenshot.png)
