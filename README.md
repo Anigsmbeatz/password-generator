@@ -4,9 +4,13 @@ Application web permettant de générer des mots de passe aléatoires.
 
 ## Fonctionnalités
 
-- Génération d’un mot de passe aléatoire
-- Choix de la longueur
-- Copie du mot de passe généré
+- Génération sécurisée de mots de passe
+- Choix de la longueur du mot de passe
+- Majuscules, minuscules, chiffres et symboles
+- Exclusion des caractères ambigus
+- Génération sans caractères répétés
+- Indicateur de robustesse du mot de passe
+- Copie du mot de passe dans le presse-papiers
 
 ## Technologies utilisées
 
